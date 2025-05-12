@@ -8,6 +8,5 @@ export function Logo() {
                 Pomodoro Timer
             </a>
         </div>
-
     );
 }
