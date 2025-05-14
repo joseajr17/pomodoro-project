@@ -4,6 +4,7 @@ import { Counter } from "../../components/Counter";
 import { Form } from "../../components/Form";
 
 export function Home() {
+
     return (
         <MainTemplate>
             <Container>
