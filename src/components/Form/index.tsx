@@ -4,12 +4,15 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useRef } from "react";
 import type { TaskModel } from "../../models/TaskModel";
-import { useTaskContext } from "@/contexts/TaskContext/useTaskContext";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { getNextCycle } from "../../utils/getNextCycle";
 
 export function Form() {
-    const { setState } = useTaskContext();
+    const { state, setState } = useTaskContext();
 
     const taskNameInput = useRef<HTMLInputElement>(null);
+
+    const nextCycle = getNextCycle(state.currentCycle);
 
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -42,11 +45,11 @@ export function Form() {
                 secondsRemaining,
                 formattedSecondsRemaining: '00:00',
                 activeTask: newTask,
-                currentCycle: 1, // 1 a 8
+                currentCycle: nextCycle, // 1 a 8
                 config: {...prevState.config,}
             }
         });
-        
+
     }
 
     return (
