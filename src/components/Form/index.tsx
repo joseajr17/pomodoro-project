@@ -1,21 +1,21 @@
-import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
-import { Cycles } from "../Cycles";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { useRef } from "react";
+import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "@/utils/getNextCycleType";
-import { secondsToMinutes } from "@/utils/secondsToMinutes";
+import { TaskActionTypes } from "@/contexts/TaskContext/taskActions";
+
+import { Cycles } from "../Cycles";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export function Form() {
-    const { state, setState } = useTaskContext();
+    const { state, dispatch } = useTaskContext();
 
     const taskNameInput = useRef<HTMLInputElement>(null);
 
-    const nextCycle = getNextCycle(state.currentCycle);
-    const nextCycleType = getNextCycleType(nextCycle);
+
 
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -29,6 +29,10 @@ export function Form() {
             return;
         }
 
+        const nextCycle = getNextCycle(state.currentCycle);
+
+        const nextCycleType = getNextCycleType(nextCycle);
+
         const newTask: TaskModel = {
             id: Date.now().toString(),
             name: taskName,
@@ -39,30 +43,13 @@ export function Form() {
             type: nextCycleType,
         };
 
-        const secondsRemaining = newTask.duration * 60;
+        dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
 
-        setState(prevState => {
-            return {
-                ...prevState,
-                tasks: [...prevState.tasks, newTask],
-                secondsRemaining,
-                formattedSecondsRemaining: secondsToMinutes(secondsRemaining),
-                activeTask: newTask,
-                currentCycle: nextCycle, // 1 a 8
-                config: { ...prevState.config, }
-            }
-        });
+
     }
 
     function handleInterruptTask() {
-        setState(prevState => {
-            return {
-                ...prevState,
-                secondsRemaining: 0,
-                formattedSecondsRemaining: '00:00',
-                activeTask: null,
-            }
-        });
+        dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
     }
 
     return (
