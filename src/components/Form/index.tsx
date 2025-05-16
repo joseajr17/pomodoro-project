@@ -1,5 +1,7 @@
 import { useRef } from "react";
+
 import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
+
 import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
@@ -9,13 +11,16 @@ import { TaskActionTypes } from "@/contexts/TaskContext/taskActions";
 import { Cycles } from "../Cycles";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Tips } from "../Tips";
 
 export function Form() {
     const { state, dispatch } = useTaskContext();
 
     const taskNameInput = useRef<HTMLInputElement>(null);
 
-
+    // cycles
+    const nextCycle = getNextCycle(state.currentCycle);
+    const nextCycleType = getNextCycleType(nextCycle);
 
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -29,10 +34,6 @@ export function Form() {
             return;
         }
 
-        const nextCycle = getNextCycle(state.currentCycle);
-
-        const nextCycleType = getNextCycleType(nextCycle);
-
         const newTask: TaskModel = {
             id: Date.now().toString(),
             name: taskName,
@@ -44,8 +45,6 @@ export function Form() {
         };
 
         dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
-
-
     }
 
     function handleInterruptTask() {
@@ -71,7 +70,7 @@ export function Form() {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-6">
-                <p>Lorem ipsum dolor sit amet.</p>
+                <Tips />
             </div>
 
             {state.currentCycle > 0 && (
