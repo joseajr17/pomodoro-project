@@ -17,12 +17,11 @@ export function Form() {
     const { state, dispatch } = useTaskContext();
 
     const taskNameInput = useRef<HTMLInputElement>(null);
+    const lastTask = state.tasks[state.tasks.length - 1]?.name || "";
 
     // cycles
     const nextCycle = getNextCycle(state.currentCycle);
     const nextCycleType = getNextCycleType(nextCycle);
-
-
 
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -71,6 +70,7 @@ export function Form() {
                     id="myInput"
                     placeholder="Digite algo"
                     ref={taskNameInput}
+                    defaultValue={lastTask}
                     className="text-center p-2 mx-20 border-transparent border-b-2 rounded-none border-b-red-400 transition-all duration-100 ease-in-out 
               placeholder:italic focus:rounded-lg disabled:border-b-gray-300 disabled:text-gray-400 "
                     disabled={!!state.activeTask}
@@ -110,7 +110,6 @@ export function Form() {
                 >
                     <StopCircleIcon className="min-w-10 min-h-10" /> Stop
                 </Button>
-
             </div>
         </form>
     );

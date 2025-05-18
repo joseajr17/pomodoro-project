@@ -1,5 +1,6 @@
 import { HistoryIcon, HouseIcon, MoonIcon, SettingsIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 type AvailableThemes = 'dark' | 'light';
 
@@ -28,11 +29,11 @@ export function Menu() {
 
     return (
         <nav className="flex items-center justify-center gap-6 text-white-900">
-            <a
-                href="#" aria-label="Ir para a página inicial" title="Ir para a página inicial"
+            <Link
+                to="/" aria-label="Ir para a página inicial" title="Ir para a página inicial"
                 className="inline-flex items-center justify-center p-5 border rounded-md border-red-400 bg-red-400  hover:bg-red-400/80 transition duration-150 ease-in-out">
                 <HouseIcon size={24} />
-            </a>
+            </Link>
 
             <a
                 href="#" aria-label="Ver histórico" title="Ver histórico"
