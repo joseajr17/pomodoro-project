@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { Home } from "../pages/Home";
+import { History } from "../pages/History";
 
 function ScrollToTop() {
     window.scrollTo({top: 0, behavior: "smooth"});
@@ -11,6 +12,7 @@ export function MainRouter() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/history" element={<History />} />
             </Routes>
             <ScrollToTop />
         </BrowserRouter>
