@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
+
 import { TrashIcon } from "lucide-react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import type { TaskModel } from "../../models/TaskModel";
 import { MainTemplate } from "../../templates/MainTemplate";
 import { formatDate } from "../../utils/formatDate";
 import { getStatus } from "../../utils/getStatus";
@@ -8,8 +11,8 @@ import { getStatus } from "../../utils/getStatus";
 import { Container } from "../../components/Container";
 import { Heading } from "../../components/Heading";
 import { Button } from "../../components/ui/button";
-import { useEffect, useState } from "react";
-import type { TaskModel } from "@/models/TaskModel";
+
+
 
 export function History() {
 

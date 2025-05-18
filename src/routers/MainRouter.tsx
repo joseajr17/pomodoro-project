@@ -1,9 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import { Home } from "../pages/Home";
 import { History } from "../pages/History";
+import { Settings } from "../pages/Settings";
+import { useEffect } from "react";
 
 function ScrollToTop() {
-    window.scrollTo({top: 0, behavior: "smooth"});
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [pathname]);
+
     return null;
 }
 
@@ -13,6 +20,7 @@ export function MainRouter() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/history" element={<History />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
             <ScrollToTop />
         </BrowserRouter>

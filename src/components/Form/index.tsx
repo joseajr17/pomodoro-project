@@ -64,15 +64,15 @@ export function Form() {
             className="flex flex-col items-center justify-center gap-6"
             action="">
             <div className="flex flex-col items-center justify-center gap-6">
-                <label htmlFor="myInput">Tarefa:</label>
+                <label htmlFor="taskInput">Tarefa:</label>
                 <Input
                     type="text"
-                    id="myInput"
-                    placeholder="Digite algo"
+                    id="taskInput"
+                    placeholder="Digite o nome da sua tarefa"
                     ref={taskNameInput}
                     defaultValue={lastTask}
                     className="text-center p-2 mx-20 border-transparent border-b-2 rounded-none border-b-red-400 transition-all duration-100 ease-in-out 
-              placeholder:italic focus:rounded-lg disabled:border-b-gray-300 disabled:text-gray-400 "
+              placeholder:italic focus:rounded-lg disabled:border-b-gray-300 disabled:text-gray-400"
                     disabled={!!state.activeTask}
                 />
             </div>

@@ -15,5 +15,5 @@ export function Home() {
                 <Form />
             </Container>
         </MainTemplate>
-    )
+    );
 }
