@@ -12,6 +12,7 @@ import { Cycles } from "../Cycles";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Tips } from "../Tips";
+import { toast } from "react-toastify";
 
 export function Form() {
     const { state, dispatch } = useTaskContext();
@@ -30,7 +31,7 @@ export function Form() {
         const taskName = taskNameInput.current.value.trim();
 
         if (!taskName) {
-            console.log("Please enter a task name");
+            toast.warn("Please enter a task name");
             return;
         }
 
