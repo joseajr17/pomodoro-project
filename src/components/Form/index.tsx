@@ -1,18 +1,17 @@
 import { useRef } from "react";
 
 import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
-
-import type { TaskModel } from "../../models/TaskModel";
+import { showMessage } from "../../adapters/showMessage";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
-import { getNextCycleType } from "@/utils/getNextCycleType";
-import { TaskActionTypes } from "@/contexts/TaskContext/taskActions";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 
 import { Cycles } from "../Cycles";
+import { Tips } from "../Tips";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Tips } from "../Tips";
-import { toast } from "react-toastify";
 
 export function Form() {
     const { state, dispatch } = useTaskContext();
@@ -23,6 +22,8 @@ export function Form() {
     const nextCycle = getNextCycle(state.currentCycle);
     const nextCycleType = getNextCycleType(nextCycle);
 
+
+
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
@@ -31,7 +32,8 @@ export function Form() {
         const taskName = taskNameInput.current.value.trim();
 
         if (!taskName) {
-            toast.warn("Please enter a task name");
+            showMessage.dismiss();
+            showMessage.warn("Digite o nome da tarefa!");
             return;
         }
 
@@ -44,11 +46,16 @@ export function Form() {
             interruptDate: null,
             type: nextCycleType,
         };
+        showMessage.dismiss();
+        showMessage.sucess("Tarefa iniciada!");
 
         dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
     }
 
     function handleInterruptTask() {
+        showMessage.dismiss();
+        showMessage.error("Tarefa interrompida!");
+
         dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
     }
 
