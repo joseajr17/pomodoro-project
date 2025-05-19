@@ -30,7 +30,7 @@ export function Cycles() {
                     return (
                         <span
                             key={nextCycle}
-                            className={`w-8 h-8 rounded-2xl ${bgSpan[cycleType]}`}
+                            className={`w-8 h-8 rounded-2xl ${bgSpan[cycleType]} cursor-pointer hover:scale-150 transition-all duration-300`}
                             aria-label={`Ciclo de ${cycleTypeDescription[cycleType]}`}
                             title={`Ciclo de ${cycleTypeDescription[cycleType]}`}
                         ></span>

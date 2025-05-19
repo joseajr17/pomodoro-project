@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Container } from "../../components/Container"
 import { Menu } from "../../components/Menu";
 
@@ -13,6 +14,10 @@ export function MainTemplate({ children }: MainTemplateProps) {
             </Container>
 
             {children}
+
+            <Container>
+                <Footer />
+            </Container>
         </>
     )
 }

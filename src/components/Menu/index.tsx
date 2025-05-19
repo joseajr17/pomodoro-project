@@ -1,5 +1,8 @@
 import { HistoryIcon, HouseIcon, MoonIcon, SettingsIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FaHistory, FaHome, FaMoon } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+import { MdSunny } from "react-icons/md";
 import { Link } from "react-router";
 
 type AvailableThemes = 'dark' | 'light';
@@ -28,11 +31,11 @@ export function Menu() {
   }, [theme]);
 
     return (
-        <nav className="flex items-center justify-center gap-6 sm:gap-2 md:gap-6 text-white-900 py-6 px-5 sm:justify-start">
+        <nav className="flex items-center justify-center gap-6 sm:gap-2 md:gap-6 text-white-900 pt-0 pb-6 px-5 sm:justify-start">
             <Link
                 to="/" aria-label="Ir para a página inicial" title="Ir para a página inicial"
                 className="inline-flex items-center justify-center sm:py-4 sm:px-3 p-4 sm:w-[166px] gap-4 border rounded-md border-black dark:border-white bg-transparent hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition duration-150 ease-in-out">
-                <HouseIcon size={24} />
+                <FaHome size={24}/>
                 <span className="hidden sm:block font-bold">Página Inicial</span>
                  
             </Link>
@@ -40,14 +43,15 @@ export function Menu() {
             <Link
                 to="/history" aria-label="Ver histórico" title="Ver histórico"
                 className="inline-flex items-center justify-center p-4 gap-4 border rounded-md border-black dark:border-white bg-transparent hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition duration-150 ease-in-out">
-                <HistoryIcon size={24} />
+                
+                <FaHistory size={24}/>
                 <span className="hidden sm:inline font-bold">Histórico</span>
             </Link>
 
             <Link
                 to="/settings" aria-label="Configurações" title="Configurações"
                 className="inline-flex items-center justify-center p-4 gap-4 border rounded-md border-black dark:border-white bg-transparent hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition duration-150 ease-in-out">
-                <SettingsIcon size={24} /> 
+                <IoMdSettings size={24}/>
                 <span className="hidden sm:inline font-bold">Configurações</span>
             </Link>
 
@@ -57,7 +61,7 @@ export function Menu() {
                 onClick={ handleThemeChange }
                 >
                 
-                {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
+                {theme === 'dark' ? <MdSunny size={24} /> : <FaMoon size={24} /> }
                 <span className="hidden md:inline font-bold">Tema</span>
             </a>
         </nav>
