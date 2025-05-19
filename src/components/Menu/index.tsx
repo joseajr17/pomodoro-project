@@ -1,5 +1,5 @@
-import { HistoryIcon, HouseIcon, MoonIcon, SettingsIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+
 import { FaHistory, FaHome, FaMoon } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { MdSunny } from "react-icons/md";
