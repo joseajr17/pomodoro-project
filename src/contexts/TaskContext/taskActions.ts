@@ -1,3 +1,4 @@
+import type { TaskStateModel } from '@/models/TaskStateModel';
 import type { TaskModel } from '../../models/TaskModel';
 
 export const TaskActionTypes = {
@@ -6,6 +7,7 @@ export const TaskActionTypes = {
   COUNT_DOWN: 'COUNT_DOWN',
   COMPLETE_TASK: 'COMPLETE_TASK',
   RESET_STATE: 'RESET_STATE',
+  CHANGE_SETTINGS: 'CHANGE_SETTINGS',
 } as const;
 
 export type TaskActionTypes = typeof TaskActionTypes[keyof typeof TaskActionTypes];
@@ -18,6 +20,10 @@ export type TaskActions =
   | {
     type: typeof TaskActionTypes.COUNT_DOWN;
     payload: { secondsRemaining: number };
+  }
+  | {
+    type: typeof TaskActionTypes.CHANGE_SETTINGS;
+    payload: TaskStateModel['config'];
   }
   | {
     type: typeof TaskActionTypes.INTERRUPT_TASK;
