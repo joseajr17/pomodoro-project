@@ -6,7 +6,7 @@ export class TimerWorkerManager {
     private worker: Worker;
 
     private constructor() {
-        this.worker = new Worker(new URL('./TimerWorker.js', import.meta.url));
+        this.worker = new Worker(new URL('./timerWorker.js', import.meta.url));
     }
 
     static getInstance(): TimerWorkerManager {
