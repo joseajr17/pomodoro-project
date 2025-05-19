@@ -1,5 +1,4 @@
 import { Container } from "../../components/Container"
-import { Logo } from "../../components/Logo";
 import { Menu } from "../../components/Menu";
 
 type MainTemplateProps = {
@@ -9,11 +8,7 @@ type MainTemplateProps = {
 export function MainTemplate({ children }: MainTemplateProps) {
     return (
         <>
-            <Container>
-                <Logo />
-            </Container>
-
-            <Container>
+            <Container justifyType="justify-start">
                 <Menu />
             </Container>
 
